@@ -1,26 +1,40 @@
 import { useState, useEffect, useRef } from "react";
+import Image from "../components/Image";
+import GeoInput from "../components/GeoInput";
 
 const Home = () => {
   const [geoLocation, setGeoLocation] = useState({
     lat: 0,
     lon: 0,
   });
-  const [weatherData, setWeatherData] = useState();
+  // const [weatherData, setWeatherData] = useState();
   const [iconUrl, setIconUrl] = useState();
   const [iconDescription, setIconDescription] = useState();
   const inputLatRef = useRef();
   const inputLonRef = useRef();
 
-  const getLocation = (e) => {
+  const getInputLocation = (e) => {
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setGeoLocation({
           ...geoLocation,
-          // lat: pos.coords.latitude,
-          // lon: pos.coords.longitude,
           lat: inputLatRef.current.value,
           lon: inputLonRef.current.value,
+        });
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  const getLocalLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        setGeoLocation({
+          ...geoLocation,
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude,
         });
       });
     } else {
@@ -36,13 +50,23 @@ const Home = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setWeatherData(data);
-        setIconDescription(weatherData.weather[0].description);
-        setIconUrl(
-          `http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`
-        );
+        // setWeatherData(data);
+        setIconDescription(data.weather[0].description.toUpperCase());
+        setIconUrl(data.weather[0].icon);
       });
   };
+
+  useEffect(() => {
+    const onPageLoad = () => {
+      getLocalLocation();
+    };
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad, false);
+      return () => window.removeEventListener("load", onPageLoad);
+    }
+  }, []);
 
   useEffect(() => {
     try {
@@ -54,14 +78,13 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <img src={iconUrl} alt="" />
-      <p>{iconDescription}</p>
-      <form onSubmit={getLocation}>
-        <input type="text" placeholder="Latitude" ref={inputLatRef} />
-        <input type="text" placeholder="Longitude" ref={inputLonRef} />
-        <button type="submit">Location</button>
-      </form>
+      <h1>Local Weather</h1>
+      <Image iconUrl={iconUrl} iconDescription={iconDescription} />
+      <GeoInput
+        getInputLocation={getInputLocation}
+        inputLatRef={inputLatRef}
+        inputLonRef={inputLonRef}
+      />
       <p>
         {geoLocation.lat} {geoLocation.lon}
       </p>
