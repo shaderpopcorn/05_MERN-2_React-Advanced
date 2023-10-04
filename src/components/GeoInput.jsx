@@ -1,7 +1,9 @@
-const GeoInput = ({ getInputLocation, inputLatRef, inputLonRef }) => {
+import "./GeoInput.css";
+
+const GeoInput = ({ handleSubmit, inputLatRef, inputLonRef }) => {
   return (
     <>
-      <form onSubmit={getInputLocation}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="latitude">Enter Latitude:</label>
         <input
           name="latitude"

@@ -1,40 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "../components/Image";
+import GeoInput from "../components/GeoInput";
 import { FETCH_DATA } from "../data/fetch-result";
 
-const Home = () => {
+const GeoLocation = () => {
   const [geoLocation, setGeoLocation] = useState({
     lat: 0,
     lon: 0,
   });
-  const [weatherData, setWeatherData] = useState();
+  // const [weatherData, setWeatherData] = useState();
   const [iconUrl, setIconUrl] = useState();
   const [iconDescription, setIconDescription] = useState();
   const inputLatRef = useRef();
   const inputLonRef = useRef();
 
-  // const getInputLocation = (e) => {
-  //   e.preventDefault();
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((pos) => {
-  //       setGeoLocation({
-  //         ...geoLocation,
-  //         lat: inputLatRef.current.value,
-  //         lon: inputLonRef.current.value,
-  //       });
-  //     });
-  //   } else {
-  //     console.log("Geolocation is not supported by this browser.");
-  //   }
-  // };
-
-  const getLocalLocation = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setGeoLocation({
           ...geoLocation,
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
+          lat: inputLatRef.current.value,
+          lon: inputLonRef.current.value,
         });
       });
     } else {
@@ -50,29 +37,17 @@ const Home = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setWeatherData(data);
+        // setWeatherData(data);
         setIconDescription(data.weather[0].description.toUpperCase());
         setIconUrl(data.weather[0].icon);
       });
   };
 
   const getFakeWeather = () => {
-    setWeatherData(FETCH_DATA);
+    // setWeatherData(FETCH_DATA);
     setIconDescription(FETCH_DATA.weather[0].description.toUpperCase());
     setIconUrl(FETCH_DATA.weather[0].icon);
   };
-
-  useEffect(() => {
-    const onPageLoad = () => {
-      getLocalLocation();
-    };
-    if (document.readyState === "complete") {
-      onPageLoad();
-    } else {
-      window.addEventListener("load", onPageLoad, false);
-      return () => window.removeEventListener("load", onPageLoad);
-    }
-  }, []);
 
   useEffect(() => {
     try {
@@ -85,13 +60,13 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Local Weather</h1>
+      <h1>Geoposition Weather</h1>
       <Image iconUrl={iconUrl} iconDescription={iconDescription} />
-      {/* <GeoInput
-        getInputLocation={getInputLocation}
+      <GeoInput
+        handleSubmit={handleSubmit}
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
-      /> */}
+      />
       <p>
         {geoLocation.lat} {geoLocation.lon}
       </p>
@@ -99,4 +74,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default GeoLocation;
