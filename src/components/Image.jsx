@@ -18,7 +18,7 @@ import mist_day from "../assets/icons/50d.svg";
 import mist_night from "../assets/icons/50n.svg";
 import "./Image.css";
 
-const Image = ({ iconUrl, iconDescription }) => {
+const Image = ({ locationName, iconUrl, iconDescription }) => {
   const SwitchImage = () => {
     switch (iconUrl) {
       case "01d":
@@ -226,6 +226,7 @@ const Image = ({ iconUrl, iconDescription }) => {
 
   return (
     <div className="image">
+      <h3 className="location">- {locationName} -</h3>
       <SwitchImage />
       <h3 className="description">{iconDescription}</h3>
     </div>

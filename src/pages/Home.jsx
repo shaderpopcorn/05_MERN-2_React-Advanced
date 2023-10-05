@@ -1,48 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "../components/Image";
 import { FETCH_DATA } from "../data/fetch-result";
+import FetchContext from "../context/fetch-context";
 
 const Home = () => {
-  const [geoLocation, setGeoLocation] = useState({
-    lat: 0,
-    lon: 0,
-  });
-  const [weatherData, setWeatherData] = useState();
-  const [iconUrl, setIconUrl] = useState();
-  const [iconDescription, setIconDescription] = useState();
+  const fetchContext = useContext(FetchContext);
 
   const handlePageLoad = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
-        setGeoLocation({
-          ...geoLocation,
-          lat: pos.coords.latitude,
+        fetchContext.setGeoLocation({
+          ...fetchContext.geoLocation,
           lon: pos.coords.longitude,
+          lat: pos.coords.latitude,
         });
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  };
-
-  const getWeather = async () => {
-    await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${
-        geoLocation.lat
-      }&lon=${geoLocation.lon}&appid=${import.meta.env.VITE_WEATHER_API}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setWeatherData(data);
-        setIconDescription(data.weather[0].description.toUpperCase());
-        setIconUrl(data.weather[0].icon);
-      });
-  };
-
-  const getFakeWeather = () => {
-    setWeatherData(FETCH_DATA);
-    setIconDescription(FETCH_DATA.weather[0].description.toUpperCase());
-    setIconUrl(FETCH_DATA.weather[0].icon);
   };
 
   useEffect(() => {
@@ -57,21 +32,16 @@ const Home = () => {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      // getWeather();
-      getFakeWeather();
-    } catch (error) {
-      console.log("Error: ", error.message);
-    }
-  }, [geoLocation]);
-
   return (
     <div>
       <h1>Local Weather</h1>
-      <Image iconUrl={iconUrl} iconDescription={iconDescription} />
+      <Image
+        locationName={fetchContext.locationName}
+        iconUrl={fetchContext.iconUrl}
+        iconDescription={fetchContext.iconDescription}
+      />
       <p>
-        {geoLocation.lat} {geoLocation.lon}
+        {fetchContext.coords.lat} {fetchContext.coords.lon}
       </p>
     </div>
   );

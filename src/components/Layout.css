@@ -1,0 +1,23 @@
+.nav-container {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  padding: 0 1rem;
+}
+
+.outlet {
+  display: flex;
+  justify-content: center;
+}

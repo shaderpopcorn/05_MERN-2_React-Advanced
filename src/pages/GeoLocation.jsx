@@ -9,6 +9,7 @@ const GeoLocation = () => {
     lon: 0,
   });
   // const [weatherData, setWeatherData] = useState();
+  const [locationName, setLocationName] = useState();
   const [iconUrl, setIconUrl] = useState();
   const [iconDescription, setIconDescription] = useState();
   const inputLatRef = useRef();
@@ -38,15 +39,17 @@ const GeoLocation = () => {
       .then((res) => res.json())
       .then((data) => {
         // setWeatherData(data);
-        setIconDescription(data.weather[0].description.toUpperCase());
+        setLocationName(data.name);
         setIconUrl(data.weather[0].icon);
+        setIconDescription(data.weather[0].description);
       });
   };
 
   const getFakeWeather = () => {
     // setWeatherData(FETCH_DATA);
-    setIconDescription(FETCH_DATA.weather[0].description.toUpperCase());
+    setLocationName(FETCH_DATA.name);
     setIconUrl(FETCH_DATA.weather[0].icon);
+    setIconDescription(FETCH_DATA.weather[0].description);
   };
 
   useEffect(() => {
@@ -61,7 +64,11 @@ const GeoLocation = () => {
   return (
     <div>
       <h1>Geoposition Weather</h1>
-      <Image iconUrl={iconUrl} iconDescription={iconDescription} />
+      <Image
+        locationName={locationName}
+        iconUrl={iconUrl}
+        iconDescription={iconDescription}
+      />
       <GeoInput
         handleSubmit={handleSubmit}
         inputLatRef={inputLatRef}
