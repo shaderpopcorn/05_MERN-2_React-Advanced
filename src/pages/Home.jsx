@@ -10,25 +10,8 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState();
   const [iconUrl, setIconUrl] = useState();
   const [iconDescription, setIconDescription] = useState();
-  const inputLatRef = useRef();
-  const inputLonRef = useRef();
 
-  // const getInputLocation = (e) => {
-  //   e.preventDefault();
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((pos) => {
-  //       setGeoLocation({
-  //         ...geoLocation,
-  //         lat: inputLatRef.current.value,
-  //         lon: inputLonRef.current.value,
-  //       });
-  //     });
-  //   } else {
-  //     console.log("Geolocation is not supported by this browser.");
-  //   }
-  // };
-
-  const getLocalLocation = () => {
+  const handlePageLoad = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setGeoLocation({
@@ -64,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     const onPageLoad = () => {
-      getLocalLocation();
+      handlePageLoad();
     };
     if (document.readyState === "complete") {
       onPageLoad();
@@ -87,11 +70,6 @@ const Home = () => {
     <div>
       <h1>Local Weather</h1>
       <Image iconUrl={iconUrl} iconDescription={iconDescription} />
-      {/* <GeoInput
-        getInputLocation={getInputLocation}
-        inputLatRef={inputLatRef}
-        inputLonRef={inputLonRef}
-      /> */}
       <p>
         {geoLocation.lat} {geoLocation.lon}
       </p>
