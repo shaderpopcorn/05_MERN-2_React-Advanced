@@ -3,13 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50vh;
+  height: 80vw;
   position: relative;
 }
 
 .location {
   position: absolute;
   top: 4%;
+  font-size: 2vh;
 }
 
 .icon {
@@ -22,4 +23,11 @@
 .description {
   position: absolute;
   top: 90%;
+  font-size: 2vh;
+}
+
+@media screen and (min-width: 768px) {
+  .image {
+    height: 50vh;
+  }
 }

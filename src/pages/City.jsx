@@ -57,18 +57,19 @@ const City = () => {
   };
 
   return (
-    <div>
-      <h1>City Weather</h1>
+    <>
+      <h1 className="headline">City Weather</h1>
+      <CitySelect handleSelect={handleSelect} />
       <Image
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}
       />
-      <CitySelect handleSelect={handleSelect} />
-      <p>
-        {fetchContext.coords.lat} {fetchContext.coords.lon}
+      <p className="coords">
+        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
+        {fetchContext.coords.lon}
       </p>
-    </div>
+    </>
   );
 };
 

@@ -42,8 +42,8 @@ function App() {
 
   useEffect(() => {
     try {
-      getWeather();
-      // getFakeWeather();
+      // getWeather();
+      getFakeWeather();
     } catch (error) {
       console.log("Error: ", error.message);
     }

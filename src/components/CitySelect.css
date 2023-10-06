@@ -3,3 +3,38 @@ select {
   height: 1rem;
   font-size: 1rem;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+}
+
+label {
+  align-self: start;
+}
+
+select {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  background-color: transparent;
+  border: 2px solid var(--offWhite);
+  border-radius: 0.25rem;
+}
+
+select:focus {
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+}
+
+@media screen and (min-width: 768px) {
+  form {
+    width: 50vh;
+  }
+
+  select {
+    width: 50vh;
+  }
+}

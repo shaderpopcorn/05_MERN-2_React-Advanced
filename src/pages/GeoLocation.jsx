@@ -24,22 +24,23 @@ const GeoLocation = () => {
   };
 
   return (
-    <div>
-      <h1>Geolocation Weather</h1>
-      <Image
-        locationName={fetchContext.locationName}
-        iconUrl={fetchContext.iconUrl}
-        iconDescription={fetchContext.iconDescription}
-      />
+    <>
+      <h1 className="headline">Weather at Geolocation</h1>
       <GeoInput
         handleSubmit={handleSubmit}
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
       />
-      <p>
-        {fetchContext.coords.lat} {fetchContext.coords.lon}
+      <Image
+        locationName={fetchContext.locationName}
+        iconUrl={fetchContext.iconUrl}
+        iconDescription={fetchContext.iconDescription}
+      />
+      <p className="coords">
+        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
+        {fetchContext.coords.lon}
       </p>
-    </div>
+    </>
   );
 };
 

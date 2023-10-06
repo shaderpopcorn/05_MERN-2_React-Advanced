@@ -1,11 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=MuseoModerno:wght@100;200&family=Quicksand&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --white: #fff;
+  --offWhite: #f7f7f7;
+  --yellow: #ffd200;
+  --lightGrey: #e0e0e0;
+  --lightGreyAlpha: rgba(229, 229, 229, 0.4);
+  --darkGrey: #2f3640;
+  --white: #ffffff;
+  --borderYellow: 3px solid var(--yellow);
+  --borderLightGrey: 3px solid var(--lightgrey);
+  --borderDarkGrey: 1px solid var(--darkgrey);
+
+  font-family: "Comfortaa", cursive;
+  font-weight: 300;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--offWhite);
+  background-color: var(--darkGrey);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,12 +30,5 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
+  scroll-behavior: smooth;
 }

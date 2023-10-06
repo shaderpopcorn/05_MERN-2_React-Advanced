@@ -32,17 +32,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Local Weather</h1>
+    <>
+      <h1 className="headline">Local Weather</h1>
       <Image
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}
       />
-      <p>
-        {fetchContext.coords.lat} {fetchContext.coords.lon}
+      <p className="coords">
+        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
+        {fetchContext.coords.lon}
       </p>
-    </div>
+    </>
   );
 };
 

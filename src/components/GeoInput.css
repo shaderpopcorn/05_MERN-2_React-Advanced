@@ -1,3 +1,37 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
 input {
-  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  border: 2px solid var(--offWhite);
+  border-radius: 0.25rem;
+}
+
+input:focus {
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border: 2px solid var(--offWhite);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  input {
+    width: 50vh;
+  }
 }
