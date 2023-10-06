@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import Image from "../components/Image";
-import { FETCH_DATA } from "../data/fetch-result";
 import FetchContext from "../context/fetch-context";
 
 const Home = () => {

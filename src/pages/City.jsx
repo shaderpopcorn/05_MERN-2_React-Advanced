@@ -1,18 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import Headline from "../components/Headline";
+import { useContext } from "react";
 import Image from "../components/Image";
 import CitySelect from "../components/CitySelect";
-import { FETCH_DATA } from "../data/fetch-result";
+import FetchContext from "../context/fetch-context";
 
 const City = () => {
-  const [geoLocation, setGeoLocation] = useState({
-    lat: 0,
-    lon: 0,
-  });
-  // const [weatherData, setWeatherData] = useState();
-  const [locationName, setLocationName] = useState();
-  const [iconUrl, setIconUrl] = useState();
-  const [iconDescription, setIconDescription] = useState();
+  const fetchContext = useContext(FetchContext);
 
   const handleSelect = (e) => {
     e.preventDefault();
@@ -20,20 +12,39 @@ const City = () => {
       navigator.geolocation.getCurrentPosition((pos) => {
         switch (e.target.value) {
           case "berlin":
-            console.log("berlin");
-            setGeoLocation({ ...geoLocation, lat: 10, lon: 10 });
+            fetchContext.setGeoLocation({
+              ...fetchContext.geoLocation,
+              lat: 10,
+              lon: 10,
+            });
             break;
           case "paris":
-            setGeoLocation({ ...geoLocation, lat: 20, lon: 20 });
+            fetchContext.setGeoLocation({
+              ...fetchContext.geoLocation,
+              lat: 20,
+              lon: 20,
+            });
             break;
           case "london":
-            setGeoLocation({ ...geoLocation, lat: 30, lon: 30 });
+            fetchContext.setGeoLocation({
+              ...fetchContext.geoLocation,
+              lat: 30,
+              lon: 30,
+            });
             break;
           case "newyork":
-            setGeoLocation({ ...geoLocation, lat: 40, lon: 40 });
+            fetchContext.setGeoLocation({
+              ...fetchContext.geoLocation,
+              lat: 40,
+              lon: 40,
+            });
             break;
           case "shanghai":
-            setGeoLocation({ ...geoLocation, lat: 50, lon: 50 });
+            fetchContext.setGeoLocation({
+              ...fetchContext.geoLocation,
+              lat: 50,
+              lon: 50,
+            });
             break;
 
           default:
@@ -45,48 +56,17 @@ const City = () => {
     }
   };
 
-  const getWeather = async () => {
-    await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${
-        geoLocation.lat
-      }&lon=${geoLocation.lon}&appid=${import.meta.env.VITE_WEATHER_API}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // setWeatherData(data);
-        setLocationName(data.name);
-        setIconUrl(data.weather[0].icon);
-        setIconDescription(data.weather[0].description);
-      });
-  };
-
-  const getFakeWeather = () => {
-    // setWeatherData(FETCH_DATA);
-    setLocationName(FETCH_DATA.name);
-    setIconUrl(FETCH_DATA.weather[0].icon);
-    setIconDescription(FETCH_DATA.weather[0].description);
-  };
-
-  useEffect(() => {
-    try {
-      // getWeather();
-      getFakeWeather();
-    } catch (error) {
-      console.log("Error: ", error.message);
-    }
-  }, [geoLocation]);
-
   return (
     <div>
-      <Headline name={FETCH_DATA.name} />
+      <h1>City Weather</h1>
       <Image
-        locationName={locationName}
-        iconUrl={iconUrl}
-        iconDescription={iconDescription}
+        locationName={fetchContext.locationName}
+        iconUrl={fetchContext.iconUrl}
+        iconDescription={fetchContext.iconDescription}
       />
       <CitySelect handleSelect={handleSelect} />
       <p>
-        {geoLocation.lat} {geoLocation.lon}
+        {fetchContext.coords.lat} {fetchContext.coords.lon}
       </p>
     </div>
   );
