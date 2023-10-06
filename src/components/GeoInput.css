@@ -6,6 +6,7 @@ form {
 }
 
 input {
+  outline: none;
   margin-bottom: 0.75rem;
   width: 100%;
   padding: 0.25rem 0.5rem;
@@ -15,6 +16,7 @@ input {
 }
 
 input:focus {
+  outline: none;
   color: var(--yellow);
   border: 2px solid var(--yellow);
 }
@@ -28,6 +30,17 @@ button {
   border-radius: 0.25rem;
   font-size: 1rem;
   font-family: inherit;
+}
+
+button:hover {
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+}
+
+button:active {
+  background-color: var(--yellow);
+  color: var(--darkGrey);
+  border: 2px solid var(--darkGrey);
 }
 
 @media screen and (min-width: 768px) {

@@ -24,8 +24,15 @@ select {
   border-radius: 0.25rem;
 }
 
-select:focus {
+select option {
+  background-color: var(--darkGrey);
   color: var(--yellow);
+  font-size: 1rem;
+  font-family: "Comfortaa", cursive;
+  font-weight: 700;
+}
+
+select:focus {
   border: 2px solid var(--yellow);
 }
 

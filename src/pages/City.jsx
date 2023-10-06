@@ -14,36 +14,36 @@ const City = () => {
           case "berlin":
             fetchContext.setGeoLocation({
               ...fetchContext.geoLocation,
-              lat: 10,
-              lon: 10,
+              lat: 52.520008,
+              lon: 13.404954,
             });
             break;
           case "paris":
             fetchContext.setGeoLocation({
               ...fetchContext.geoLocation,
-              lat: 20,
-              lon: 20,
+              lat: 48.864716,
+              lon: 2.349014,
             });
             break;
           case "london":
             fetchContext.setGeoLocation({
               ...fetchContext.geoLocation,
-              lat: 30,
-              lon: 30,
+              lat: 51.5085,
+              lon: -0.1257,
             });
             break;
           case "newyork":
             fetchContext.setGeoLocation({
               ...fetchContext.geoLocation,
-              lat: 40,
-              lon: 40,
+              lat: 40.73061,
+              lon: -73.935242,
             });
             break;
           case "shanghai":
             fetchContext.setGeoLocation({
               ...fetchContext.geoLocation,
-              lat: 50,
-              lon: 50,
+              lat: 31.224361,
+              lon: 121.46917,
             });
             break;
 

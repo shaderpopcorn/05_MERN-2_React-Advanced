@@ -41,7 +41,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <footer>
-        <p>Copyright by Shaderpopcorn</p>
+        <p>© by Shaderpopcorn</p>
       </footer>
     </div>
   );
