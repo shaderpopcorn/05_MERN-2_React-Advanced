@@ -25,13 +25,13 @@ const Layout = () => {
             <h2>- weather forecast -</h2>
             <ul className="forecast-list">
               <li>
-                <Link to="/">Local</Link>
+                <Link to="/home-forecast">Local</Link>
               </li>
               <li>
-                <Link to="/geolocation">GeoLocation</Link>
+                <Link to="/geolocation-forecast">GeoLocation</Link>
               </li>
               <li>
-                <Link to="/city">City</Link>
+                <Link to="/city-forecast">City</Link>
               </li>
             </ul>
           </nav>

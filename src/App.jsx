@@ -1,11 +1,14 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FETCH_DATA } from "./data/fetch-result";
 import FetchContext from "./context/fetch-context";
 import Layout from "./components/Layout";
 import GeoLocation from "./pages/GeoLocation";
+import GeoLocationForecast from "./pages/GeoLocationForecast";
 import City from "./pages/City";
-import Home from "./pages/Home";
+import CityForecast from "./pages/CityForecast";
+import Local from "./pages/Local";
+import LocalForecast from "./pages/LocalForecast";
 import "./App.css";
 
 function App() {
@@ -13,10 +16,11 @@ function App() {
     lat: 0,
     lon: 0,
   });
-  const [locationName, setLocationName] = useState();
-  const [iconUrl, setIconUrl] = useState();
-  const [iconDescription, setIconDescription] = useState();
+  const [locationName, setLocationName] = useState("");
   const [coords, setCoords] = useState({ lat: 0, lon: 0 });
+  const [iconUrl, setIconUrl] = useState("");
+  const [iconDescription, setIconDescription] = useState("");
+  const [forecastList, setForecastList] = useState([]);
 
   const getWeather = useCallback(async () => {
     await fetch(
@@ -31,7 +35,7 @@ function App() {
         setIconUrl(data.weather[0].icon);
         setIconDescription(data.weather[0].description);
       });
-  }, [geoLocation]);
+  }, []);
 
   const getFakeWeather = () => {
     setCoords(FETCH_DATA.coord);
@@ -40,10 +44,25 @@ function App() {
     setIconDescription(FETCH_DATA.weather[0].description);
   };
 
+  const getForecast = async () => {
+    await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${
+        geoLocation.lat
+      }&lon=${geoLocation.lon}&appid=${import.meta.env.VITE_WEATHER_API}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setCoords(data.city.coord);
+        setLocationName(data.city.name);
+        setForecastList(data.list);
+      });
+  };
+
   useEffect(() => {
     try {
-      getWeather();
-      // getFakeWeather();
+      // getWeather();
+      getFakeWeather();
+      // getForecast();
     } catch (error) {
       console.log("Error: ", error.message);
     }
@@ -56,8 +75,8 @@ function App() {
     locationName: locationName,
     iconUrl: iconUrl,
     iconDescription: iconDescription,
+    forecastList: forecastList,
   };
-  console.log(coords);
 
   return (
     <>
@@ -65,9 +84,15 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
+              <Route index element={<Local />} />
               <Route path="/city" element={<City />} />
               <Route path="/geolocation" element={<GeoLocation />} />
+              <Route path="/home-forecast" element={<LocalForecast />} />
+              <Route path="/city-forecast" element={<CityForecast />} />
+              <Route
+                path="/geolocation-forecast"
+                element={<GeoLocationForecast />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>

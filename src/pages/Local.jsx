@@ -1,8 +1,8 @@
 import { useEffect, useContext } from "react";
-import Image from "../components/Image";
+import ImageCurrent from "../components/ImageCurrent";
 import FetchContext from "../context/fetch-context";
 
-const Home = () => {
+const Local = () => {
   const fetchContext = useContext(FetchContext);
 
   const handlePageLoad = () => {
@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <>
       <h1 className="headline">Local Weather</h1>
-      <Image
+      <ImageCurrent
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}
@@ -47,4 +47,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Local;

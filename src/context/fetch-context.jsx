@@ -7,6 +7,7 @@ const FetchContext = createContext({
   locationName: "",
   iconUrl: "",
   iconDescription: "",
+  forecastList: [],
 });
 
 export default FetchContext;

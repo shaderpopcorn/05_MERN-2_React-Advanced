@@ -3,7 +3,7 @@ import ImageCurrent from "../components/ImageCurrent";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
 
-const City = () => {
+const CityForecast = () => {
   const fetchContext = useContext(FetchContext);
 
   const handleSelect = (e) => {
@@ -73,4 +73,4 @@ const City = () => {
   );
 };
 
-export default City;
+export default CityForecast;

@@ -3,7 +3,7 @@ import ImageCurrent from "../components/ImageCurrent";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 
-const GeoLocation = () => {
+const GeoLocationForecast = () => {
   const fetchContext = useContext(FetchContext);
   const inputLatRef = useRef();
   const inputLonRef = useRef();
@@ -44,4 +44,4 @@ const GeoLocation = () => {
   );
 };
 
-export default GeoLocation;
+export default GeoLocationForecast;

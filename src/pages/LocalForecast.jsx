@@ -1,21 +1,17 @@
-import { useRef, useContext } from "react";
+import { useEffect, useContext } from "react";
 import ImageCurrent from "../components/ImageCurrent";
-import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 
-const GeoLocation = () => {
+const LocalForecast = () => {
   const fetchContext = useContext(FetchContext);
-  const inputLatRef = useRef();
-  const inputLonRef = useRef();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handlePageLoad = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         fetchContext.setGeoLocation({
           ...fetchContext.geoLocation,
-          lat: inputLatRef.current.value,
-          lon: inputLonRef.current.value,
+          lon: pos.coords.longitude,
+          lat: pos.coords.latitude,
         });
       });
     } else {
@@ -23,14 +19,21 @@ const GeoLocation = () => {
     }
   };
 
+  useEffect(() => {
+    const onPageLoad = () => {
+      handlePageLoad();
+    };
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad, false);
+      return () => window.removeEventListener("load", onPageLoad);
+    }
+  }, []);
+
   return (
     <>
-      <h1 className="headline">Weather at Geolocation</h1>
-      <GeoInput
-        handleSubmit={handleSubmit}
-        inputLatRef={inputLatRef}
-        inputLonRef={inputLonRef}
-      />
+      <h1 className="headline">Local Weather</h1>
       <ImageCurrent
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
@@ -44,4 +47,4 @@ const GeoLocation = () => {
   );
 };
 
-export default GeoLocation;
+export default LocalForecast;
