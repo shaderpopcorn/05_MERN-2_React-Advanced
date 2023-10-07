@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
+import CardCurrent from "../components/CardCurrent";
 import FetchContext from "../context/fetch-context";
 
 const Local = () => {
@@ -34,7 +34,7 @@ const Local = () => {
   return (
     <>
       <h1 className="headline">Local Weather</h1>
-      <ImageCurrent
+      <CardCurrent
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}

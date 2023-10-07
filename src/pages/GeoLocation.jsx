@@ -1,5 +1,5 @@
 import { useRef, useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
+import CardCurrent from "../components/CardCurrent";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 
@@ -31,7 +31,7 @@ const GeoLocation = () => {
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
       />
-      <ImageCurrent
+      <CardCurrent
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}

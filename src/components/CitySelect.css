@@ -1,30 +1,32 @@
-select {
-  padding: 0.5rem 0.5rem;
-  height: 1rem;
-  font-size: 1rem;
-}
-
-form {
+.city-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80vw;
+  margin-bottom: 1rem;
 }
 
 label {
   align-self: start;
+  line-height: 1.5rem;
 }
 
-select {
+.city-select {
+  outline: none;
+  /* appearance: none; */
+  /* padding: 0.5rem 0.5rem; */
+  height: 1.75rem;
+  font-size: 1rem;
   margin-bottom: 0.75rem;
   width: 100%;
   padding: 0.75rem 0.5rem;
   background-color: transparent;
   border: 2px solid var(--offWhite);
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 
-select option {
+.city-select option {
   background-color: var(--darkGrey);
   color: var(--yellow);
   font-size: 1rem;
@@ -32,16 +34,16 @@ select option {
   font-weight: 700;
 }
 
-select:focus {
+.city-select:focus {
   border: 2px solid var(--yellow);
 }
 
 @media screen and (min-width: 768px) {
-  form {
+  .city-form {
     width: 50vh;
   }
 
-  select {
+  .city-select {
     width: 50vh;
   }
 }

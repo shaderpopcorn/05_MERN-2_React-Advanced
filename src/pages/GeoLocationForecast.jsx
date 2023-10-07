@@ -1,7 +1,8 @@
 import { useRef, useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
+import CardForecast from "../components/CardForecast";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
+import DisplayForecast from "../components/DisplayForecast";
 
 const GeoLocationForecast = () => {
   const fetchContext = useContext(FetchContext);
@@ -25,21 +26,14 @@ const GeoLocationForecast = () => {
 
   return (
     <>
-      <h1 className="headline">Weather at Geolocation</h1>
-      <GeoInput
-        handleSubmit={handleSubmit}
-        inputLatRef={inputLatRef}
-        inputLonRef={inputLonRef}
-      />
-      <ImageCurrent
-        locationName={fetchContext.locationName}
-        iconUrl={fetchContext.iconUrl}
-        iconDescription={fetchContext.iconDescription}
-      />
-      <p className="coords">
-        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
-        {fetchContext.coords.lon}
-      </p>
+      <h1 className="headline">Geo-Location Weather Forecast</h1>
+      <DisplayForecast fetchContext={fetchContext}>
+        <GeoInput
+          handleSubmit={handleSubmit}
+          inputLatRef={inputLatRef}
+          inputLonRef={inputLonRef}
+        />
+      </DisplayForecast>
     </>
   );
 };

@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
+import CardForecast from "../components/CardForecast";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
+import DisplayForecast from "../components/DisplayForecast";
 
 const CityForecast = () => {
   const fetchContext = useContext(FetchContext);
@@ -58,17 +59,10 @@ const CityForecast = () => {
 
   return (
     <>
-      <h1 className="headline">City Weather</h1>
-      <CitySelect handleSelect={handleSelect} />
-      <ImageCurrent
-        locationName={fetchContext.locationName}
-        iconUrl={fetchContext.iconUrl}
-        iconDescription={fetchContext.iconDescription}
-      />
-      <p className="coords">
-        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
-        {fetchContext.coords.lon}
-      </p>
+      <h1 className="headline">City Weather Forecast</h1>
+      <DisplayForecast fetchContext={fetchContext}>
+        <CitySelect handleSelect={handleSelect} />
+      </DisplayForecast>
     </>
   );
 };

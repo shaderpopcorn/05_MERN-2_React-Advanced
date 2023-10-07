@@ -1,11 +1,22 @@
-form {
+.form-container {
+  width: 50vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
+  margin-bottom: 1rem;
 }
 
-input {
+.geo-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.geo-form div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.geo-input {
   outline: none;
   margin-bottom: 0.75rem;
   width: 100%;
@@ -17,16 +28,21 @@ input {
   font-family: "Comfortaa", cursive;
 }
 
-input:focus {
+.geo-input:focus {
   outline: none;
   color: var(--yellow);
   border: 2px solid var(--yellow);
 }
 
-button {
+.geo-input:active {
+  color: var(--yellow);
+}
+
+.geo-button {
   padding: 0.25rem 0.5rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  color: var(--offWhite);
   background-color: transparent;
   border: 2px solid var(--offWhite);
   border-radius: 0.25rem;
@@ -34,19 +50,32 @@ button {
   font-family: inherit;
 }
 
-button:hover {
+.geo-button:hover {
   color: var(--yellow);
   border: 2px solid var(--yellow);
 }
 
-button:active {
+.geo-button:active {
   background-color: var(--yellow);
   color: var(--darkGrey);
   border: 2px solid var(--darkGrey);
 }
 
 @media screen and (min-width: 768px) {
-  input {
-    width: 50vh;
+  .geo-form {
+    flex-direction: row;
+    align-items: end;
+  }
+
+  .geo-form div {
+    margin: 0;
+    margin-right: 1rem;
+    width: 100%;
+    align-items: end;
+  }
+
+  .geo-button {
+    margin: 0;
+    margin-bottom: 0.75rem;
   }
 }

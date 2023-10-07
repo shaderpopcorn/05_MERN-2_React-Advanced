@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
+import CardCurrent from "../components/CardCurrent";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
 
@@ -60,7 +60,7 @@ const City = () => {
     <>
       <h1 className="headline">City Weather</h1>
       <CitySelect handleSelect={handleSelect} />
-      <ImageCurrent
+      <CardCurrent
         locationName={fetchContext.locationName}
         iconUrl={fetchContext.iconUrl}
         iconDescription={fetchContext.iconDescription}

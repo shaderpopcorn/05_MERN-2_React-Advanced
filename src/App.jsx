@@ -44,7 +44,7 @@ function App() {
     setIconDescription(FETCH_DATA.weather[0].description);
   };
 
-  const getForecast = async () => {
+  const getForecast = useCallback(async () => {
     await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${
         geoLocation.lat
@@ -56,13 +56,13 @@ function App() {
         setLocationName(data.city.name);
         setForecastList(data.list);
       });
-  };
+  }, [geoLocation]);
 
   useEffect(() => {
     try {
       // getWeather();
-      getFakeWeather();
-      // getForecast();
+      // getFakeWeather();
+      getForecast();
     } catch (error) {
       console.log("Error: ", error.message);
     }
@@ -85,14 +85,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Local />} />
-              <Route path="/city" element={<City />} />
               <Route path="/geolocation" element={<GeoLocation />} />
-              <Route path="/home-forecast" element={<LocalForecast />} />
-              <Route path="/city-forecast" element={<CityForecast />} />
+              <Route path="/city" element={<City />} />
+              <Route path="/local-forecast" element={<LocalForecast />} />
               <Route
                 path="/geolocation-forecast"
                 element={<GeoLocationForecast />}
               />
+              <Route path="/city-forecast" element={<CityForecast />} />
             </Route>
           </Routes>
         </BrowserRouter>

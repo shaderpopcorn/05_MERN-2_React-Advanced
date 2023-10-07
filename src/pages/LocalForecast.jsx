@@ -1,9 +1,10 @@
 import { useEffect, useContext } from "react";
-import ImageCurrent from "../components/ImageCurrent";
 import FetchContext from "../context/fetch-context";
+import DisplayForecast from "../components/DisplayForecast";
 
 const LocalForecast = () => {
   const fetchContext = useContext(FetchContext);
+  console.log(fetchContext.forecastList);
 
   const handlePageLoad = () => {
     if (navigator.geolocation) {
@@ -33,16 +34,8 @@ const LocalForecast = () => {
 
   return (
     <>
-      <h1 className="headline">Local Weather</h1>
-      <ImageCurrent
-        locationName={fetchContext.locationName}
-        iconUrl={fetchContext.iconUrl}
-        iconDescription={fetchContext.iconDescription}
-      />
-      <p className="coords">
-        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
-        {fetchContext.coords.lon}
-      </p>
+      <h1 className="headline">Local Weather Forecast</h1>
+      <DisplayForecast fetchContext={fetchContext} />
     </>
   );
 };

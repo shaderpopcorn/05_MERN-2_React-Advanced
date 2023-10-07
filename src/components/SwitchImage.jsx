@@ -1,3 +1,4 @@
+import { useState } from "react";
 import clear_sky_day from "../assets/icons/01d.svg";
 import clear_sky_night from "../assets/icons/01n.svg";
 import few_clouds_day from "../assets/icons/02d.svg";
@@ -16,14 +17,16 @@ import snow_day from "../assets/icons/13d.svg";
 import snow_night from "../assets/icons/13n.svg";
 import mist_day from "../assets/icons/50d.svg";
 import mist_night from "../assets/icons/50n.svg";
+import "./SwitchImage.css";
 
 const SwitchImage = ({ iconUrl }) => {
+  const [style, setStyle] = useState("forecast");
   switch (iconUrl) {
     case "01d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={clear_sky_day}
           alt="clear sky day"
@@ -33,8 +36,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "01n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={clear_sky_night}
           alt="clear sky night"
@@ -44,8 +47,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "02d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={few_clouds_day}
           alt="few clouds day"
@@ -55,8 +58,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "02n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={few_clouds_night}
           alt="few clouds night"
@@ -66,8 +69,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "03d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={scattered_clouds_day}
           alt="scattered clouds day"
@@ -77,8 +80,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "03n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={scattered_clouds_night}
           alt="scattered clouds night"
@@ -88,8 +91,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "04d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={broken_clouds_day}
           alt="broken clouds day"
@@ -99,8 +102,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "04n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={broken_clouds_night}
           alt="broken clouds night"
@@ -110,8 +113,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "09d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={shower_rain_day}
           alt="shower rain day"
@@ -121,8 +124,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "09n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={shower_rain_night}
           alt="shower rain night"
@@ -132,8 +135,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "10d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={rain_day}
           alt="rain day"
@@ -143,8 +146,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "10n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={rain_night}
           alt="rain night"
@@ -154,8 +157,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "11d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={thunderstorm_day}
           alt="thunderstorm day"
@@ -165,8 +168,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "11n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={thunderstorm_night}
           alt="thunderstorm night"
@@ -176,8 +179,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "13d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={snow_day}
           alt="snow day"
@@ -187,8 +190,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "13n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={snow_night}
           alt="snow night"
@@ -198,8 +201,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "50d":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={mist_day}
           alt="mist day"
@@ -209,8 +212,8 @@ const SwitchImage = ({ iconUrl }) => {
     case "50n":
       return (
         <img
-          className="icon"
           rel="icon"
+          className={style}
           type="image/svg+xml"
           src={mist_night}
           alt="mist night"
