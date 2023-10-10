@@ -2,7 +2,7 @@ import { useRef, useContext } from "react";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 import DisplayForecast from "../components/DisplayForecast";
-import Spinner from "../components/Spinner";
+import Loading from "../components/Loading";
 
 const GeoLocationForecast = () => {
   const fetchContext = useContext(FetchContext);
@@ -16,7 +16,7 @@ const GeoLocationForecast = () => {
       lat: inputLatRef.current.value,
       lon: inputLonRef.current.value,
     });
-    fetchContext.setShowWeather(true);
+    fetchContext.setShowInputWeather(true);
   };
 
   return (
@@ -27,9 +27,9 @@ const GeoLocationForecast = () => {
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
       />
-      {fetchContext.showWeather ? (
-        fetchContext.spinner ? (
-          Spinner()
+      {fetchContext.showInputWeather ? (
+        fetchContext.loading ? (
+          Loading()
         ) : (
           <DisplayForecast />
         )

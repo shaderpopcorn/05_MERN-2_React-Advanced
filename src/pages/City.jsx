@@ -2,7 +2,7 @@ import { useContext } from "react";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
 import DisplayCurrent from "../components/DisplayCurrent";
-import Spinner from "../components/Spinner";
+import Loading from "../components/Loading";
 
 const City = () => {
   const fetchContext = useContext(FetchContext);
@@ -48,16 +48,16 @@ const City = () => {
       default:
         break;
     }
-    fetchContext.setShowWeather(true);
+    fetchContext.setShowInputWeather(true);
   };
 
   return (
     <>
       <h1 className="headline">City Weather</h1>
       <CitySelect handleSelect={handleSelect} />
-      {fetchContext.showWeather ? (
-        fetchContext.spinner ? (
-          Spinner()
+      {fetchContext.showInputWeather ? (
+        fetchContext.loading ? (
+          Loading()
         ) : (
           <DisplayCurrent />
         )

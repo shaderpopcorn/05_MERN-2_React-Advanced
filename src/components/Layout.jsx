@@ -18,7 +18,6 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                   to="/"
                   onClick={() => {
                     handleLocalWeatherCurrent();
-                    fetchContext.setShowWeather(true);
                   }}
                 >
                   Local
@@ -28,7 +27,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                 <Link
                   to="/geolocation"
                   onClick={() => {
-                    fetchContext.setShowWeather(false);
+                    fetchContext.setShowInputWeather(false);
                   }}
                 >
                   Geo-Location
@@ -38,7 +37,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                 <Link
                   to="/city"
                   onClick={() => {
-                    fetchContext.setShowWeather(false);
+                    fetchContext.setShowInputWeather(false);
                   }}
                 >
                   City
@@ -54,7 +53,6 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                   to="/local-forecast"
                   onClick={() => {
                     handleLocalWeatherForecast();
-                    fetchContext.setShowWeather(true);
                   }}
                 >
                   Local
@@ -64,7 +62,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                 <Link
                   to="/geolocation-forecast"
                   onClick={() => {
-                    fetchContext.setShowWeather(false);
+                    fetchContext.setShowInputWeather(false);
                   }}
                 >
                   Geo-Location
@@ -74,7 +72,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                 <Link
                   to="/city-forecast"
                   onClick={() => {
-                    fetchContext.setShowWeather(false);
+                    fetchContext.setShowInputWeather(false);
                   }}
                 >
                   City

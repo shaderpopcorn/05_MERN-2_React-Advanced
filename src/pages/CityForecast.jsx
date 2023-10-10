@@ -2,7 +2,8 @@ import { useContext } from "react";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
 import DisplayForecast from "../components/DisplayForecast";
-import Spinner from "../components/Spinner";
+import GeoDenied from "../components/GeoDenied";
+import Loading from "../components/Loading";
 
 const CityForecast = () => {
   const fetchContext = useContext(FetchContext);
@@ -48,16 +49,20 @@ const CityForecast = () => {
       default:
         break;
     }
-    fetchContext.setShowWeather(true);
+    fetchContext.setShowInputWeather(true);
   };
 
   return (
     <>
       <h1 className="headline">City Weather Forecast</h1>
       <CitySelect handleSelect={handleSelect} />
-      {fetchContext.showWeather ? (
-        fetchContext.spinner ? (
-          Spinner()
+      {fetchContext.geoDenied ? (
+        <>
+          <GeoDenied />
+        </>
+      ) : fetchContext.showInputWeather ? (
+        fetchContext.loading ? (
+          Loading()
         ) : (
           <DisplayForecast />
         )

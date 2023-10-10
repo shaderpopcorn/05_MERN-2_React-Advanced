@@ -1,9 +1,10 @@
 import { createContext } from "react";
 
 const FetchContext = createContext({
-  spinner: false,
-  setShowWeather: () => {},
-  showWeather: false,
+  geoDenied: false,
+  loading: false,
+  setShowInputWeather: () => {},
+  showInputWeather: false,
   setGeoLocationCurrent: () => {},
   geoLocationCurrent: "",
   setGeoLocationForecast: () => {},

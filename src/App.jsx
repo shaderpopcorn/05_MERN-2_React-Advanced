@@ -12,7 +12,8 @@ import LocalForecast from "./pages/LocalForecast";
 import "./App.css";
 
 function App() {
-  const [spinner, setSpinner] = useState(false);
+  const [geoDenied, setGeoDenied] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [geoLocationCurrent, setGeoLocationCurrent] = useState({
     lat: 0,
     lon: 0,
@@ -26,37 +27,47 @@ function App() {
   const [iconUrl, setIconUrl] = useState("");
   const [iconDescription, setIconDescription] = useState("");
   const [forecastList, setForecastList] = useState([]);
-  const [showWeather, setShowWeather] = useState(true);
+  const [showInputWeather, setShowInputWeather] = useState(true);
 
   const handleLocalWeatherCurrent = async () => {
     const pos = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
+      navigator.geolocation.getCurrentPosition(resolve, (reject) => {
+        console.log("error:", reject.message);
+        setGeoDenied(true);
+      });
     });
+
     setGeoLocationCurrent({
       ...geoLocationCurrent,
       lon: pos.coords.longitude,
       lat: pos.coords.latitude,
     });
+    setShowInputWeather(false);
   };
 
   useEffect(() => {
     handleLocalWeatherCurrent();
+    setShowInputWeather(false);
   }, []);
 
   const handleLocalWeatherForecast = async () => {
     const pos = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
+      navigator.geolocation.getCurrentPosition(resolve, (reject) => {
+        console.log("error:", reject.message);
+        setGeoDenied(true);
+      });
     });
     setGeoLocationForecast({
       ...geoLocationForecast,
       lon: pos.coords.longitude,
       lat: pos.coords.latitude,
     });
+    setShowInputWeather(false);
   };
 
   const getCurrentWeather = useCallback(
     async (geoLocationCurrent) => {
-      setSpinner(true);
+      setLoading(true);
       await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${
           geoLocationCurrent.lat
@@ -70,7 +81,7 @@ function App() {
           setLocationName(data.name);
           setIconUrl(data.weather[0].icon);
           setIconDescription(data.weather[0].description);
-          setSpinner(false);
+          setLoading(false);
         });
     },
     [geoLocationCurrent]
@@ -84,7 +95,7 @@ function App() {
   // };
 
   const getForecastWeather = useCallback(async (geoLocationForecast) => {
-    setSpinner(true);
+    setLoading(true);
     await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${
         geoLocationForecast.lat
@@ -97,7 +108,7 @@ function App() {
         setCoords(data.city.coord);
         setLocationName(data.city.name);
         setForecastList(data.list);
-        setSpinner(false);
+        setLoading(false);
       });
   }, []);
 
@@ -118,9 +129,10 @@ function App() {
   }, [geoLocationForecast]);
 
   const fetchContext = {
-    spinner: spinner,
-    setShowWeather: setShowWeather,
-    showWeather: showWeather,
+    geoDenied: geoDenied,
+    loading: loading,
+    setShowInputWeather: setShowInputWeather,
+    showInputWeather: showInputWeather,
     setGeoLocationCurrent: setGeoLocationCurrent,
     geoLocationCurrent: geoLocationCurrent,
     setGeoLocationForecast: setGeoLocationForecast,
