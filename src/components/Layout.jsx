@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import FetchContext from "../context/fetch-context";
 import "./Layout.css";
 
-const Layout = () => {
+const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
+  const fetchContext = useContext(FetchContext);
   return (
     <div>
       <header>
@@ -11,13 +14,35 @@ const Layout = () => {
             <h2>- current weather -</h2>
             <ul className="current-list">
               <li>
-                <Link to="/">Local</Link>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    handleLocalWeatherCurrent();
+                    fetchContext.setShowWeather(true);
+                  }}
+                >
+                  Local
+                </Link>
               </li>
               <li>
-                <Link to="/geolocation">Geo-Location</Link>
+                <Link
+                  to="/geolocation"
+                  onClick={() => {
+                    fetchContext.setShowWeather(false);
+                  }}
+                >
+                  Geo-Location
+                </Link>
               </li>
               <li>
-                <Link to="/city">City</Link>
+                <Link
+                  to="/city"
+                  onClick={() => {
+                    fetchContext.setShowWeather(false);
+                  }}
+                >
+                  City
+                </Link>
               </li>
             </ul>
           </nav>
@@ -25,13 +50,35 @@ const Layout = () => {
             <h2>- weather forecast -</h2>
             <ul className="forecast-list">
               <li>
-                <Link to="/local-forecast">Local</Link>
+                <Link
+                  to="/local-forecast"
+                  onClick={() => {
+                    handleLocalWeatherForecast();
+                    fetchContext.setShowWeather(true);
+                  }}
+                >
+                  Local
+                </Link>
               </li>
               <li>
-                <Link to="/geolocation-forecast">Geo-Location</Link>
+                <Link
+                  to="/geolocation-forecast"
+                  onClick={() => {
+                    fetchContext.setShowWeather(false);
+                  }}
+                >
+                  Geo-Location
+                </Link>
               </li>
               <li>
-                <Link to="/city-forecast">City</Link>
+                <Link
+                  to="/city-forecast"
+                  onClick={() => {
+                    fetchContext.setShowWeather(false);
+                  }}
+                >
+                  City
+                </Link>
               </li>
             </ul>
           </nav>

@@ -1,21 +1,13 @@
 import { useContext } from "react";
 import FetchContext from "../context/fetch-context";
-import CardForecast from "./CardForecast";
+import CardCurrent from "./CardCurrent";
 
-const DisplayForecast = () => {
+const DisplayCurrent = () => {
   const fetchContext = useContext(FetchContext);
   return (
     <>
       <h2 className="location">- {fetchContext.locationName} -</h2>
-      <ul>
-        {fetchContext.forecastList.map((item, index) => {
-          return (
-            <li key={index}>
-              <CardForecast item={item} />
-            </li>
-          );
-        })}
-      </ul>
+      <CardCurrent />
       <p className="coords">
         Latitude: {fetchContext.coords.lat} | Longitude:{" "}
         {fetchContext.coords.lon}
@@ -24,4 +16,4 @@ const DisplayForecast = () => {
   );
 };
 
-export default DisplayForecast;
+export default DisplayCurrent;

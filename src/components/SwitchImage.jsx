@@ -17,6 +17,7 @@ import snow_day from "../assets/icons/13d.svg";
 import snow_night from "../assets/icons/13n.svg";
 import mist_day from "../assets/icons/50d.svg";
 import mist_night from "../assets/icons/50n.svg";
+import loading from "../assets/icons/loading.svg";
 import "./SwitchImage.css";
 
 const SwitchImage = ({ iconUrl }) => {
@@ -217,6 +218,17 @@ const SwitchImage = ({ iconUrl }) => {
           type="image/svg+xml"
           src={mist_night}
           alt="mist night"
+        />
+      );
+      break;
+    case "loading":
+      return (
+        <img
+          rel="icon"
+          className={style}
+          type="image/svg+xml"
+          src={loading}
+          alt="loading"
         />
       );
       break;

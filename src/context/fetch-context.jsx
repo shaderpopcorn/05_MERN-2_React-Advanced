@@ -1,8 +1,13 @@
 import { createContext } from "react";
 
 const FetchContext = createContext({
-  setGeoLocation: () => {},
-  geoLocation: "",
+  spinner: false,
+  setShowWeather: () => {},
+  showWeather: false,
+  setGeoLocationCurrent: () => {},
+  geoLocationCurrent: "",
+  setGeoLocationForecast: () => {},
+  geoLocationForecast: "",
   coords: { lat: 0, lon: 0 },
   locationName: "",
   iconUrl: "",

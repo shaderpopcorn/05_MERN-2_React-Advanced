@@ -1,8 +1,8 @@
 import { useRef, useContext } from "react";
-import CardForecast from "../components/CardForecast";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 import DisplayForecast from "../components/DisplayForecast";
+import Spinner from "../components/Spinner";
 
 const GeoLocationForecast = () => {
   const fetchContext = useContext(FetchContext);
@@ -11,29 +11,31 @@ const GeoLocationForecast = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        fetchContext.setGeoLocation({
-          ...fetchContext.geoLocation,
-          lat: inputLatRef.current.value,
-          lon: inputLonRef.current.value,
-        });
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+    fetchContext.setGeoLocationForecast({
+      ...fetchContext.geoLocationForecast,
+      lat: inputLatRef.current.value,
+      lon: inputLonRef.current.value,
+    });
+    fetchContext.setShowWeather(true);
   };
 
   return (
     <>
       <h1 className="headline">Geo-Location Weather Forecast</h1>
-      <DisplayForecast fetchContext={fetchContext}>
-        <GeoInput
-          handleSubmit={handleSubmit}
-          inputLatRef={inputLatRef}
-          inputLonRef={inputLonRef}
-        />
-      </DisplayForecast>
+      <GeoInput
+        handleSubmit={handleSubmit}
+        inputLatRef={inputLatRef}
+        inputLonRef={inputLonRef}
+      />
+      {fetchContext.showWeather ? (
+        fetchContext.spinner ? (
+          Spinner()
+        ) : (
+          <DisplayForecast />
+        )
+      ) : (
+        <></>
+      )}
     </>
   );
 };

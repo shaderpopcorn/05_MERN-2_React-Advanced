@@ -1,12 +1,27 @@
+import { useContext } from "react";
+import FetchContext from "../context/fetch-context";
 import SwitchImage from "./SwitchImage";
 import "./CardCurrent.css";
 
-const CardCurrent = ({ locationName, iconUrl, iconDescription }) => {
+const CardCurrent = () => {
+  const fetchContext = useContext(FetchContext);
+
   return (
-    <div className="image-current">
-      <h3 className="location-current">- {locationName} -</h3>
-      <SwitchImage iconUrl={iconUrl} />
-      <h3 className="description-current">{iconDescription}</h3>
+    <div className="card-current">
+      <div className="data-current">
+        <p className="description-current">
+          description: <span>{fetchContext.iconDescription.toUpperCase()}</span>
+        </p>
+        <p className="details-current">
+          temperature:{" "}
+          <span>
+            {/* {(fetchContext.currentObject.main.temp - 273.15).toFixed(1)}°C */}
+          </span>{" "}
+        </p>
+      </div>
+      <div className="image-current">
+        <SwitchImage iconUrl={fetchContext.iconUrl} />
+      </div>
     </div>
   );
 };

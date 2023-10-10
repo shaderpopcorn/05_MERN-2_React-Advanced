@@ -1,4 +1,4 @@
-.card-current {
+.card-spinner {
   margin: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -9,19 +9,13 @@
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
 }
 
-.data-current {
+.data-spinner {
   width: 90%;
-  display: flex;
-  justify-content: space-around;
   padding: 1.5 0.5rem;
   margin: 1rem;
 }
 
-.data-current p span {
-  font-weight: 700;
-}
-
-.image-current {
+.image-spinner {
   width: 50%;
 }
 

@@ -1,7 +1,8 @@
 import { useRef, useContext } from "react";
-import CardCurrent from "../components/CardCurrent";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
+import DisplayCurrent from "../components/DisplayCurrent";
+import Spinner from "../components/Spinner";
 
 const GeoLocation = () => {
   const fetchContext = useContext(FetchContext);
@@ -10,17 +11,12 @@ const GeoLocation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        fetchContext.setGeoLocation({
-          ...fetchContext.geoLocation,
-          lat: inputLatRef.current.value,
-          lon: inputLonRef.current.value,
-        });
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+    fetchContext.setGeoLocationCurrent({
+      ...fetchContext.geoLocation,
+      lat: inputLatRef.current.value,
+      lon: inputLonRef.current.value,
+    });
+    fetchContext.setShowWeather(true);
   };
 
   return (
@@ -31,15 +27,15 @@ const GeoLocation = () => {
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
       />
-      <CardCurrent
-        locationName={fetchContext.locationName}
-        iconUrl={fetchContext.iconUrl}
-        iconDescription={fetchContext.iconDescription}
-      />
-      <p className="coords">
-        Latitude: {fetchContext.coords.lat} | Longitude:{" "}
-        {fetchContext.coords.lon}
-      </p>
+      {fetchContext.showWeather ? (
+        fetchContext.spinner ? (
+          Spinner()
+        ) : (
+          <DisplayCurrent />
+        )
+      ) : (
+        <></>
+      )}
     </>
   );
 };
