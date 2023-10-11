@@ -12,17 +12,29 @@
 .data-geoDenied {
   width: 90%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 1.5 0.5rem;
   margin: 1rem;
 }
 
 .description-geoDenied {
   font-weight: 700;
+  padding-bottom: 0.5rem;
+}
+
+.description-line {
+  width: 70%;
+}
+
+.description-details {
+  padding-top: 0.5rem;
+  text-align: center;
+  line-height: 1.25rem;
 }
 
 .image-geoDenied {
-  width: 50%;
+  width: 30%;
 }
 
 @media screen and (min-width: 768px) {
