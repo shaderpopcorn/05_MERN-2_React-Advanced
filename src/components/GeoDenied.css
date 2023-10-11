@@ -11,8 +11,14 @@
 
 .data-geoDenied {
   width: 90%;
+  display: flex;
+  justify-content: center;
   padding: 1.5 0.5rem;
   margin: 1rem;
+}
+
+.description-geoDenied {
+  font-weight: 700;
 }
 
 .image-geoDenied {

@@ -2,6 +2,7 @@ import { useRef, useContext } from "react";
 import GeoInput from "../components/GeoInput";
 import FetchContext from "../context/fetch-context";
 import DisplayCurrent from "../components/DisplayCurrent";
+import GeoDenied from "../components/GeoDenied";
 import Loading from "../components/Loading";
 
 const GeoLocation = () => {
@@ -27,7 +28,18 @@ const GeoLocation = () => {
         inputLatRef={inputLatRef}
         inputLonRef={inputLonRef}
       />
-      {fetchContext.showInputWeather ? (
+      {/* {fetchContext.showInputWeather ? (
+        fetchContext.loading ? (
+          Loading()
+        ) : (
+          <DisplayCurrent />
+        )
+      ) : (
+        <></>
+      )} */}
+      {fetchContext.geoDenied ? (
+        <GeoDenied />
+      ) : fetchContext.showInputWeather ? (
         fetchContext.loading ? (
           Loading()
         ) : (

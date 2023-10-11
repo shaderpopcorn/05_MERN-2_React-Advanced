@@ -2,6 +2,7 @@ import { useContext } from "react";
 import CitySelect from "../components/CitySelect";
 import FetchContext from "../context/fetch-context";
 import DisplayCurrent from "../components/DisplayCurrent";
+import GeoDenied from "../components/GeoDenied";
 import Loading from "../components/Loading";
 
 const City = () => {
@@ -55,7 +56,9 @@ const City = () => {
     <>
       <h1 className="headline">City Weather</h1>
       <CitySelect handleSelect={handleSelect} />
-      {fetchContext.showInputWeather ? (
+      {fetchContext.geoDenied ? (
+        <GeoDenied />
+      ) : fetchContext.showInputWeather ? (
         fetchContext.loading ? (
           Loading()
         ) : (

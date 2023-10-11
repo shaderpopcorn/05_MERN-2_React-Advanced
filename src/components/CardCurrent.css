@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 50vw;
+  width: 90vw;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
 }
@@ -12,9 +12,16 @@
 .data-current {
   width: 90%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
   padding: 1.5 0.5rem;
-  margin: 1rem;
+  margin-top: 1rem;
+}
+
+.data-current p {
+  line-height: 1.5rem;
+  font-size: 0.75rem;
 }
 
 .data-current p span {
@@ -22,11 +29,17 @@
 }
 
 .image-current {
-  width: 50%;
+  width: 40%;
 }
 
 @media screen and (min-width: 768px) {
-  /* .card {
-    height: 10vh;
-  } */
+  .card-current {
+    width: 50vw;
+  }
+  .data-current {
+    flex-direction: row;
+  }
+  .data-current p {
+    font-size: 1rem;
+  }
 }

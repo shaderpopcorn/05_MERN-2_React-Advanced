@@ -57,9 +57,7 @@ const CityForecast = () => {
       <h1 className="headline">City Weather Forecast</h1>
       <CitySelect handleSelect={handleSelect} />
       {fetchContext.geoDenied ? (
-        <>
-          <GeoDenied />
-        </>
+        <GeoDenied />
       ) : fetchContext.showInputWeather ? (
         fetchContext.loading ? (
           Loading()

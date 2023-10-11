@@ -3,6 +3,8 @@ import { createContext } from "react";
 const FetchContext = createContext({
   geoDenied: false,
   loading: false,
+  setShowLocalWeather: () => {},
+  showLocalWeather: false,
   setShowInputWeather: () => {},
   showInputWeather: false,
   setGeoLocationCurrent: () => {},
@@ -13,6 +15,7 @@ const FetchContext = createContext({
   locationName: "",
   iconUrl: "",
   iconDescription: "",
+  temperature: "",
   forecastList: [],
 });
 

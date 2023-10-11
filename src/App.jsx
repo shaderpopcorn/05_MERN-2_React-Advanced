@@ -26,7 +26,9 @@ function App() {
   const [coords, setCoords] = useState({ lat: 0, lon: 0 });
   const [iconUrl, setIconUrl] = useState("");
   const [iconDescription, setIconDescription] = useState("");
+  const [temperature, setTemperature] = useState("");
   const [forecastList, setForecastList] = useState([]);
+  const [showLocalWeather, setShowLocalWeather] = useState(true);
   const [showInputWeather, setShowInputWeather] = useState(true);
 
   const handleLocalWeatherCurrent = async () => {
@@ -46,9 +48,19 @@ function App() {
   };
 
   useEffect(() => {
-    handleLocalWeatherCurrent();
-    setShowInputWeather(false);
+    if (window.location.pathname === "/") {
+      handleLocalWeatherCurrent();
+      setShowInputWeather(false);
+    } else if (window.location.pathname === "/local-forecast") {
+      handleLocalWeatherForecast();
+      setShowInputWeather(false);
+    }
   }, []);
+
+  // useEffect(() => {
+  //   setShowLocalWeather(true);
+  //   // GeoDenied();
+  // }, [geoDenied]);
 
   const handleLocalWeatherForecast = async () => {
     const pos = await new Promise((resolve, reject) => {
@@ -81,6 +93,7 @@ function App() {
           setLocationName(data.name);
           setIconUrl(data.weather[0].icon);
           setIconDescription(data.weather[0].description);
+          setTemperature(data.main.temp);
           setLoading(false);
         });
     },
@@ -114,23 +127,53 @@ function App() {
 
   useEffect(() => {
     try {
-      getCurrentWeather(geoLocationCurrent);
+      if (
+        !geoDenied &&
+        geoLocationCurrent.lat !== 0 &&
+        geoLocationCurrent.lon !== 0
+      ) {
+        setShowLocalWeather(true);
+        getCurrentWeather(geoLocationCurrent);
+      } else if (
+        !geoDenied &&
+        geoLocationCurrent.lat === 0 &&
+        geoLocationCurrent.lon === 0
+      ) {
+        setShowLocalWeather(false);
+      } else if (geoDenied) {
+        console.log("geo denied");
+      }
     } catch (error) {
       console.log("Error: ", error.message);
     }
-  }, [geoLocationCurrent]);
+  }, [geoLocationCurrent, geoDenied]);
 
   useEffect(() => {
     try {
-      getForecastWeather(geoLocationForecast);
+      if (
+        !geoDenied &&
+        geoLocationForecast.lat !== 0 &&
+        geoLocationForecast.lon !== 0
+      ) {
+        setShowLocalWeather(true);
+        getForecastWeather(geoLocationForecast);
+      } else if (
+        !geoDenied &&
+        geoLocationForecast.lat === 0 &&
+        geoLocationForecast.lon === 0
+      ) {
+        setShowLocalWeather(false);
+      }
     } catch (error) {
       console.log("Error: ", error.message);
     }
-  }, [geoLocationForecast]);
+  }, [geoLocationForecast, geoDenied]);
 
   const fetchContext = {
     geoDenied: geoDenied,
     loading: loading,
+    setShowLocalWeather: setShowLocalWeather,
+    showLocalWeather: showLocalWeather,
     setShowInputWeather: setShowInputWeather,
     showInputWeather: showInputWeather,
     setGeoLocationCurrent: setGeoLocationCurrent,
@@ -141,6 +184,7 @@ function App() {
     locationName: locationName,
     iconUrl: iconUrl,
     iconDescription: iconDescription,
+    temperature: temperature,
     forecastList: forecastList,
   };
 

@@ -14,9 +14,7 @@ const CardCurrent = () => {
         </p>
         <p className="details-current">
           temperature:{" "}
-          <span>
-            {/* {(fetchContext.currentObject.main.temp - 273.15).toFixed(1)}°C */}
-          </span>{" "}
+          <span>{(fetchContext.temperature - 273.15).toFixed(1)}°C</span>
         </p>
       </div>
       <div className="image-current">

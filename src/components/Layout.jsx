@@ -18,6 +18,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                   to="/"
                   onClick={() => {
                     handleLocalWeatherCurrent();
+                    fetchContext.setShowLocalWeather(false);
                   }}
                 >
                   Local
@@ -53,6 +54,7 @@ const Layout = ({ handleLocalWeatherCurrent, handleLocalWeatherForecast }) => {
                   to="/local-forecast"
                   onClick={() => {
                     handleLocalWeatherForecast();
+                    fetchContext.setShowLocalWeather(false);
                   }}
                 >
                   Local

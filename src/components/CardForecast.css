@@ -3,25 +3,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
+  width: 90vw;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
-}
-
-.image-forecast {
-  width: 10vh;
-  margin-right: 5vh;
 }
 
 .data-forecast {
   display: flex;
   align-items: center;
   padding: 1.5 0.5rem;
-  margin: 1rem;
+  margin: 1rem 0rem 1rem 1vw;
 }
 
 .data-forecast ul {
-  margin-left: 1rem;
+  margin-left: 2vw;
+}
+
+.description-forecast li {
+  font-size: 0.75rem;
 }
 
 .details-forecast li {
@@ -30,10 +29,32 @@
 
 .data-forecast ul li {
   line-height: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.image-forecast {
+  width: 10vh;
+  margin-right: 2vw;
 }
 
 @media screen and (min-width: 768px) {
-  /* .card {
-    height: 10vh;
-  } */
+  .card-forecast {
+    width: 50vw;
+  }
+
+  .data-forecast {
+    margin: 1rem 0rem 1rem 1.5vw;
+  }
+
+  .data-forecast ul {
+    margin-left: 1.5vw;
+  }
+
+  .description-forecast li {
+    font-size: 1rem;
+  }
+
+  .image-forecast {
+    margin-right: 2.5vw;
+  }
 }
