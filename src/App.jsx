@@ -57,11 +57,6 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setShowLocalWeather(true);
-  //   // GeoDenied();
-  // }, [geoDenied]);
-
   const handleLocalWeatherForecast = async () => {
     const pos = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, (reject) => {
@@ -105,6 +100,7 @@ function App() {
   //   setLocationName(FETCH_DATA.name);
   //   setIconUrl(FETCH_DATA.weather[0].icon);
   //   setIconDescription(FETCH_DATA.weather[0].description);
+  //   setTemperature(FETCH_DATA.main.temp);
   // };
 
   const getForecastWeather = useCallback(async (geoLocationForecast) => {
