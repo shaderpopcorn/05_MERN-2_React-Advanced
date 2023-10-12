@@ -12,23 +12,35 @@ import LocalForecast from "./pages/LocalForecast";
 import "./App.css";
 
 function App() {
+  // check if location access is enabled / disabled
   const [geoDenied, setGeoDenied] = useState(false);
+  // show loading, if data is being fetched
   const [loading, setLoading] = useState(false);
+  // geo-location for current weather
   const [geoLocationCurrent, setGeoLocationCurrent] = useState({
     lat: 0,
     lon: 0,
   });
+  // geo-location for forecast weather
   const [geoLocationForecast, setGeoLocationForecast] = useState({
     lat: 0,
     lon: 0,
   });
+  // location name for current and forecast weather
   const [locationName, setLocationName] = useState("");
+  // coordinates for current and forecast weather
   const [coords, setCoords] = useState({ lat: 0, lon: 0 });
+  // icon-url for current weather
   const [iconUrl, setIconUrl] = useState("");
+  // icon-description for current weather
   const [iconDescription, setIconDescription] = useState("");
+  // temperature for current weather
   const [temperature, setTemperature] = useState("");
+  // list for forecast weather
   const [forecastList, setForecastList] = useState([]);
+  // show / hide local weather cards
   const [showLocalWeather, setShowLocalWeather] = useState(true);
+  // show / hide weather cards for geolocation and city inputs
   const [showInputWeather, setShowInputWeather] = useState(true);
 
   const handleLocalWeatherCurrent = async () => {
@@ -72,6 +84,14 @@ function App() {
     setShowInputWeather(false);
   };
 
+  // const getFakeWeather = () => {
+  //   setCoords(FETCH_DATA.coord);
+  //   setLocationName(FETCH_DATA.name);
+  //   setIconUrl(FETCH_DATA.weather[0].icon);
+  //   setIconDescription(FETCH_DATA.weather[0].description);
+  //   setTemperature(FETCH_DATA.main.temp);
+  // };
+
   const getCurrentWeather = useCallback(
     async (geoLocationCurrent) => {
       setLoading(true);
@@ -94,14 +114,6 @@ function App() {
     },
     [geoLocationCurrent]
   );
-
-  // const getFakeWeather = () => {
-  //   setCoords(FETCH_DATA.coord);
-  //   setLocationName(FETCH_DATA.name);
-  //   setIconUrl(FETCH_DATA.weather[0].icon);
-  //   setIconDescription(FETCH_DATA.weather[0].description);
-  //   setTemperature(FETCH_DATA.main.temp);
-  // };
 
   const getForecastWeather = useCallback(async (geoLocationForecast) => {
     setLoading(true);

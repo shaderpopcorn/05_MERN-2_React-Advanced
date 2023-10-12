@@ -43,10 +43,8 @@ nav ul {
 }
 
 nav ul li {
-  margin: 0 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border: 2px solid var(--offWhite);
-  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--offWhite);
 }
 
 nav ul li a {
@@ -57,10 +55,15 @@ nav ul li a {
 
 nav ul li:hover {
   cursor: pointer;
-  border: 2px solid var(--yellow);
+  border-top: none;
+  border-bottom: 1px solid var(--yellow);
 }
 
 nav ul li:hover > a {
+  color: var(--yellow);
+}
+
+nav ul li:hover > nav h2 {
   color: var(--yellow);
 }
 
